@@ -1,0 +1,11 @@
+-- Script Created by SnoopBobbyBob
+local Active = true;
+while Active == true do
+    local args = {
+    [1] = "Cash",
+    [2] = 5000
+    }
+
+    game:GetService("ReplicatedStorage").Events.CrateClaim:FireServer(unpack(args))
+    wait(0.1)
+end
