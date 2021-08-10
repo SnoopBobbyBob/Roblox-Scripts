@@ -1,0 +1,199 @@
+-- Snoop Hub Made by Snoop Bobby Bob
+-- Version: 4.20
+
+-- Instances:
+
+
+
+local ScreenGui = Instance.new("ScreenGui")
+local Main = Instance.new("Frame")
+local Title = Instance.new("TextLabel")
+local TPInput = Instance.new("TextBox")
+local CloseButton = Instance.new("TextButton")
+local JumpButton = Instance.new("TextButton")
+local TPButton = Instance.new("TextButton")
+local WalkSpeedI = Instance.new("TextBox")
+local WalkSpeedB = Instance.new("TextButton")
+local TextButton = Instance.new("TextButton")
+local OpenFrame = Instance.new("Frame")
+local OpenButton = Instance.new("TextButton")
+
+--Properties:
+
+ScreenGui.Parent = game.CoreGui
+
+Main.Name = "Main"
+Main.Parent = ScreenGui
+Main.BackgroundColor3 = Color3.fromRGB(103, 83, 255)
+Main.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Main.Position = UDim2.new(0.00727149611, 0, 0.349650353, 0)
+Main.Size = UDim2.new(0, 172, 0, 189)
+Main.Visible = false
+Main.Draggable = true
+
+Title.Name = "Title"
+Title.Parent = Main
+Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Title.Position = UDim2.new(-0.000395933166, 0, -0.00139862299, 0)
+Title.Size = UDim2.new(0, 172, 0, 23)
+Title.Font = Enum.Font.GothamBold
+Title.Text = "   Simple Snoop Hub"
+Title.TextColor3 = Color3.fromRGB(0, 0, 0)
+Title.TextSize = 14.000
+Title.TextWrapped = true
+Title.TextXAlignment = Enum.TextXAlignment.Left
+
+TPInput.Name = "TPInput"
+TPInput.Parent = Main
+TPInput.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TPInput.BorderColor3 = Color3.fromRGB(255, 255, 255)
+TPInput.Position = UDim2.new(0.0813953504, 0, 0.161916345, 0)
+TPInput.Size = UDim2.new(0, 151, 0, 20)
+TPInput.Font = Enum.Font.SourceSans
+TPInput.Text = "Player Name"
+TPInput.TextColor3 = Color3.fromRGB(0, 0, 0)
+TPInput.TextSize = 14.000
+
+CloseButton.Name = "CloseButton"
+CloseButton.Parent = Main
+CloseButton.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
+CloseButton.Position = UDim2.new(0.848455191, 0, 0.0146853328, 0)
+CloseButton.Size = UDim2.new(0, 20, 0, 14)
+CloseButton.Font = Enum.Font.GothamBold
+CloseButton.Text = "X"
+CloseButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+CloseButton.TextSize = 14.000
+CloseButton.MouseButton1Down:connect(function()
+Main.Visible = false
+end)
+
+JumpButton.Name = "JumpButton"
+JumpButton.Parent = Main
+JumpButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+JumpButton.Position = UDim2.new(0.0813953504, 0, 0.710959136, 0)
+JumpButton.Size = UDim2.new(0, 149, 0, 22)
+JumpButton.Font = Enum.Font.SourceSans
+JumpButton.Text = "Infinite Jump"
+JumpButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+JumpButton.TextSize = 14.000
+JumpButton.MouseButton1Down:connect(function()
+local Player = game:GetService'Players'.LocalPlayer;
+local UIS = game:GetService'UserInputService';
+ 
+_G.JumpHeight = 50;
+ 
+function Action(Object, Function) if Object ~= nil then Function(Object); end end
+ 
+UIS.InputBegan:connect(function(UserInput)
+    if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.Space then
+        Action(Player.Character.Humanoid, function(self)
+            if self:GetState() == Enum.HumanoidStateType.Jumping or self:GetState() == Enum.HumanoidStateType.Freefall then
+                Action(self.Parent.HumanoidRootPart, function(self)
+                    self.Velocity = Vector3.new(0, _G.JumpHeight, 0);
+                end)
+            end
+        end)
+    end
+end)
+end)
+
+TPButton.Name = "TPButton"
+TPButton.Parent = Main
+TPButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TPButton.Position = UDim2.new(0.0813953504, 0, 0.306004763, 0)
+TPButton.Size = UDim2.new(0, 150, 0, 22)
+TPButton.Font = Enum.Font.SourceSans
+TPButton.Text = "Teleport"
+TPButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TPButton.TextSize = 14.000
+TPButton.MouseButton1Click:connect(function()
+    local tp_namedplayer = TPInput.Text
+    local tp_player = game:GetService("Players")[tp_namedplayer]
+    local PLR = game:GetService("Players").LocalPlayer
+    local p = TPInput.Text
+   
+    if tp_player then
+        for i = 1,1 do
+        wait(.08)
+        PLR.Character.HumanoidRootPart.CFrame = tp_player.Character.HumanoidRootPart.CFrame + Vector3.new(0, 0, -1)
+        end
+    end
+end)
+
+WalkSpeedI.Name = "WalkSpeedI"
+WalkSpeedI.Parent = Main
+WalkSpeedI.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+WalkSpeedI.Position = UDim2.new(0.0813953504, 0, 0.445334464, 0)
+WalkSpeedI.Size = UDim2.new(0, 150, 0, 19)
+WalkSpeedI.Font = Enum.Font.SourceSans
+WalkSpeedI.Text = "100"
+WalkSpeedI.TextColor3 = Color3.fromRGB(0, 0, 0)
+WalkSpeedI.TextSize = 14.000
+
+WalkSpeedB.Name = "WalkSpeedB"
+WalkSpeedB.Parent = Main
+WalkSpeedB.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+WalkSpeedB.Position = UDim2.new(0.0813953504, 0, 0.578416586, 0)
+WalkSpeedB.Size = UDim2.new(0, 150, 0, 19)
+WalkSpeedB.Font = Enum.Font.SourceSans
+WalkSpeedB.Text = "Set Walk Speed"
+WalkSpeedB.TextColor3 = Color3.fromRGB(0, 0, 0)
+WalkSpeedB.TextSize = 14.000
+WalkSpeedB.MouseButton1Down:connect(function()
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = WalkSpeedI.Text
+end)
+
+TextButton.Parent = Main
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.Position = UDim2.new(0.0813953504, 0, 0.862433851, 0)
+TextButton.Size = UDim2.new(0, 149, 0, 19)
+TextButton.Font = Enum.Font.SourceSans
+TextButton.Text = "Alt Delete"
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.TextSize = 14.000
+TextButton.MouseButton1Down:connect(function()
+local Plr = game:GetService("Players").LocalPlayer
+local Mouse = Plr:GetMouse()
+ 
+Mouse.Button1Down:connect(function()
+if not game:GetService("UserInputService"):IsKeyDown(Enum.KeyCode.LeftAlt) then return end
+if not Mouse.Target then return end
+Mouse.Target:Destroy()
+end)
+end)
+
+OpenFrame.Name = "OpenFrame"
+OpenFrame.Parent = ScreenGui
+OpenFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+OpenFrame.Position = UDim2.new(0, 0, 0.276223779, 0)
+OpenFrame.Size = UDim2.new(0, 100, 0, 31)
+
+OpenButton.Name = "OpenButton"
+OpenButton.Parent = OpenFrame
+OpenButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+OpenButton.BorderColor3 = Color3.fromRGB(170, 85, 255)
+OpenButton.Size = UDim2.new(0, 100, 0, 31)
+OpenButton.Font = Enum.Font.GothamBold
+OpenButton.Text = "Open"
+OpenButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+OpenButton.TextSize = 14.000
+OpenButton.MouseButton1Down:connect(function()
+Main.Visible = true
+end)
+
+noclip = false
+game:GetService('RunService').Stepped:connect(function()
+if noclip then
+game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+end
+end)
+plr = game.Players.LocalPlayer
+mouse = plr:GetMouse()
+mouse.KeyDown:connect(function(key)
+ 
+if key == "`" then
+noclip = not noclip
+game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+end
+end)
